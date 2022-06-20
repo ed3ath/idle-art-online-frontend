@@ -1,0 +1,75 @@
+<mat-card>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      (click)="mintFreeAvatar()"
+      *ngIf="defaultAccount"
+      color="primary"
+    >
+      Mint Free Avatar
+    </button>
+    <button
+      mat-raised-button
+      (click)="mintAvatar()"
+      *ngIf="defaultAccount"
+      color="primary"
+    >
+      Mint Avatar
+    </button>
+  </mat-card-actions>
+</mat-card>
+<mat-card>
+  <mat-card-title>Accounts</mat-card-title>
+  <mat-card-content>
+    <table mat-table [dataSource]="avatars">
+      <ng-container matColumnDef="avatarId">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.avatarId }}</td>
+      </ng-container>
+      <ng-container matColumnDef="rarity">
+        <th mat-header-cell *matHeaderCellDef>Rarity</th>
+        <td mat-cell *matCellDef="let element">{{ element.rarity }}</td>
+      </ng-container>
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef>Gender</th>
+        <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+      </ng-container>
+      <ng-container matColumnDef="level">
+        <th mat-header-cell *matHeaderCellDef>Level</th>
+        <td mat-cell *matCellDef="let element">{{ element.level }}</td>
+      </ng-container>
+      <ng-container matColumnDef="exp">
+        <th mat-header-cell *matHeaderCellDef>EXP</th>
+        <td mat-cell *matCellDef="let element">{{ element.exp }}</td>
+      </ng-container>
+      <ng-container matColumnDef="attributes">
+        <th mat-header-cell *matHeaderCellDef>Attributes</th>
+        <td mat-cell *matCellDef="let element">{{ element.attributes }}</td>
+      </ng-container>
+      <ng-container matColumnDef="hp">
+        <th mat-header-cell *matHeaderCellDef>HP</th>
+        <td mat-cell *matCellDef="let element">{{ element.hp }}</td>
+      </ng-container>
+      <ng-container matColumnDef="genes">
+        <th mat-header-cell *matHeaderCellDef>Genes</th>
+        <td mat-cell *matCellDef="let element">{{ element.genes }}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button (click)="doAdventure(element.avatarId)" *ngIf="!element.status">
+            Go Adventure
+          </button>
+          <button mat-raised-button (click)="getEvents(element.avatarId)" *ngIf="element.status">
+            Events
+          </button>
+          <button mat-raised-button (click)="endAdventure(element.avatarId)" *ngIf="element.status">
+            End Adventure
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

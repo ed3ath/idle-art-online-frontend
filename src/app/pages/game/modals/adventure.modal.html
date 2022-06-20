@@ -1,0 +1,19 @@
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Select adventure duration</mat-label>
+    <mat-select [(value)]="durationType">
+      <mat-option value="1">Hour</mat-option>
+      <mat-option value="2">Day</mat-option>
+      <mat-option value="3">Week</mat-option>
+      <mat-option value="4">Month</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="durationValue">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="doAdventure()">Start</button>
+</div>
